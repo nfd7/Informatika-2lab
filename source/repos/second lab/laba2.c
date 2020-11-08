@@ -11,10 +11,10 @@ int main()
     while (e = strstr(b, " "))
     {
         *e = 0;
-        if (*b == c) 
-        printf("%s\n", b);
+        if (*b == c)
+        printf("Words beginning with letter '%c' %s\n", c, b);
         b = e + 1;
     }
     if (*b == c)
-    printf("%s\n", b);
+    printf("Words beginning with letter '%c' %s\n", c, b);
 }
