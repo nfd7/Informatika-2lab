@@ -16,9 +16,9 @@ int main()
                     if (*b == c)
                         printf("Words beginning with letter '%c' %s\n", c, b);
                     b = e + 1;
-                    if (*b == c)
-                        printf("Words beginning with letter '%c' %s\n", c, b);
             }
+            if (*b == c)
+                printf("Words beginning with letter '%c' %s\n", c, b);
         }
         else printf(" \n '%c' is not a letter", c);
         return 0;
