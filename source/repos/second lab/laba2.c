@@ -1,25 +1,57 @@
-#include <stdio.h> 
-int main()
+#include <stdio.h>
+
+
+int my_isalpha(char mark)
 {
-    char c, s[200];
-    char* b, * e;
-        printf("enter the letter : ");
-        c = getch();
-        if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
-        {
-            printf("%c\nenter the string : ", c);
-            gets(s);
-            b = s;
-            while (e = strstr(b, " "))
-            {
-                    *e = 0;
-                    if (*b == c)
-                        printf("Words beginning with letter '%c' %s\n", c, b);
-                    b = e + 1;
-            }
-            if (*b == c)
-                printf("Words beginning with letter '%c' %s\n", c, b);
-        }
-        else printf(" \n '%c' is not a letter", c);
+    if ((((mark) >= 'A') && ((mark) <= 'Z') || ((mark) >= 'a') && ((mark) <= 'z')))
+        return 1;
+
+    else
         return 0;
+}
+
+int UpperCase(int ch) {
+
+    return (('a' <= ch) && (ch <= 'z')) ? ch - 32 : ch;
+}
+
+
+char* find_ch_word(char* dst, char* ptr, char ch) {
+    *dst = '\0';
+    while (*ptr) {
+        for (; (!my_isalpha(*ptr)) && *ptr; *ptr++);
+        if (UpperCase(*ptr) == UpperCase(ch)) {
+            for (; my_isalpha(*ptr) && *ptr; *dst++ = *ptr++);
+            *dst = '\0';
+            return ptr;
+        }
+        else {
+            for (; my_isalpha(*ptr) && *ptr; ptr++);
+        }
+    }
+    return (*dst) ? ptr : NULL;
+}
+
+int  main(void) {
+    char buf[32], * ptr;
+    char str[255], ch;
+
+    printf("Enter string:");
+    gets(str);
+    printf("Enter letter:");
+    scanf("%c", &ch);
+
+    if (my_isalpha(ch) == 1) {
+        ptr = str;
+        printf("Words beginning with letter '%c':\n", ch);
+        while ((ptr = find_ch_word(buf, ptr, ch)) != NULL)
+            puts(buf);
+        getchar();
+    }
+    else {
+        printf("Enter character(not a number) ");
+    }
+
+    return 0;
+
 }
